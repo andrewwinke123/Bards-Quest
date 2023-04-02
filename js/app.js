@@ -1,25 +1,28 @@
 
+let state = {}
+
+
 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 
 let story = {chapters: 
-      'chapter1', chapter1: {title: 'The Wizards Tower', 
-      story:`The Wizard Glik has just stepped out to run errands. He will be back in 5 minutes.
-      </p>
-      <p>
-      "Don't forget your chores and you are NOT allowed in my crafting room! OR the observation deck" the wizard says.
-      </p>
-      <p>
-      As the wizard leaves and you mosey around the his tower, you daydream about one day finding a way out of the wizards legally biding contract spell,
-      which you foolishly fell for one month prior, and which legally bound you to his employment for the next 10 years. (Gamehindge is a "right to work state," and as such, workers rights are not very abundant). 
-      For weeks you have been sneaking into his crafting room to learn his spells.
-      You have hit a brick wall with your discrete training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
+  'chapter1', chapter1: {title: 'The Wizards Tower', 
+  story:`The Wizard Glik has just stepped out to run errands. He will be back in 5 minutes.
+  </p>
+  <p>
+  "Don't forget your chores and you are NOT allowed in my crafting room! OR the observation deck" the wizard says.
+  </p>
+  <p>
+  As the wizard leaves and you mosey around the his tower, you daydream about one day finding a way out of the wizards legally biding contract spell,
+  which you foolishly fell for one month prior, and which legally bound you to his employment for the next 10 years. (Gamehindge is a "right to work state," and as such, workers rights are not very abundant). 
+  For weeks you have been sneaking into his crafting room to learn his spells.
+  You have hit a brick wall with your discrete training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
       You look around the tower and notice that a fly has fallen onto the window ledge.
       "just the thing I need to start my first spell" you think to yourself. What do you do?`,
       choices: [ 
-      {choice: 'Work on chores', result: 'wizardsTower'},
+        {choice: 'Work on chores', result: 'wizardsTower'},
       {choice: 'Enter crafting room', result: 'craftingRoom'},
       {choice: 'Enter observation deck', result: 'observation deck'},
       {choice: 'Collect fly', result: 'fly'}
@@ -31,7 +34,7 @@ let story = {chapters:
     choices: [
       {choice: 'Enter crafting room', result: 'justAsYouBegin'},
       {choice: 'Enter observation deck', result: 'justAsYouBegin'},
-      {choice: 'Collec tfly', result: 'justAsYouBegin'},
+      {choice: 'Collect fly', result: 'justAsYouBegin'},
       {choice: 'Continue Chores', result: 'justAsYouBegin'}
     ]
 },
@@ -39,10 +42,13 @@ craftingRoom: {
   title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
   story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
   choices: [
-    { choice: 'Open book', result: 'Just as you begin..',
-      choice: 'Mix potions', result: 'Just as you begin..',
-      choice: 'Collect fly', result: 'Just as you begin..',
-      choice: 'Continue Chores', result: 'Just as you begin..'}
+    {choice: 'Open book', result: 'openBook'},
+    {choice: 'Mix potions', result: 'mixPotionsFly',
+    requiredState: (state) => state.flyWings && state.mixer,
+    state: {flyWings: false, mixer: false, flyPotion: true}},
+      {choice: 'Mix potions', result: 'mixPotionsFail',
+      requiredState: (state) => state.flyWings && state.mixer},
+      {choice: 'Continue Chores', result: 'Just as you begin..'}
     ]
   },
   justAsYouBegin: {
@@ -51,10 +57,20 @@ craftingRoom: {
     choices: [
       {choice: 'Enter crafting room', result: 'Just as you begin..'},
       {choice: 'Enter observation deck', result: 'Just as you begin..'},
-      {choice: 'Collec tfly', result: 'Just as you begin..'},
+      {choice: 'Collect fly', result: 'Just as you begin..'},
       {choice: 'Continue Chores', result: 'Just as you begin..'}
     ]
-},
+  },
+  fly: {
+    title: 'you pick up the fly',
+    story: 'remembering that fly wings are an important component of the flight spell, you quickly grab the fly and put it into your inventory.',
+    state: {flyWings: true},
+    choices: [
+      {choice: 'Work on chores', result: 'wizardsTower'},
+      {choice: 'Enter crafting room', result: 'craftingRoom'},
+      {choice: 'Enter observation deck', result: 'observation deck'}
+    ]
+  },
 }
 
 
@@ -86,20 +102,34 @@ input.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         const userInput = input.value
       }
-    
+      
       input.value = ''
       titleScreen.innerHTML = 
       `<h1>${story[story.chapters].title}</h1>
       <h3>${story[story.chapters].story}</h3>
       ${playerInput()}`
-      /////
+
       addInputListeners()
     })
   }
 })
+//////////////////////////////
+function start() {
+  state = {}
+  story.chapter1[1]
+}
 
-////////////
- function addInputListeners() {
+function newOption(option) {
+  return newOption.requiredState == null || option.requiredState(state)
+}
+
+function optionChoice(option) {
+  state = object.assign(state, option.setState)
+}
+
+start()
+//////////////////////////////
+function addInputListeners() {
   const inputButtons = document.querySelectorAll('#buttons button')
   for(let i = 0; i <inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', handlePlayerInput)
@@ -160,5 +190,3 @@ function render() {
 //     ]
 //   }
 // }
-
-
