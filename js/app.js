@@ -1,8 +1,5 @@
 
 
-/*-------------------------------- Library --------------------------------*/
-
-
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -22,17 +19,43 @@ let story = {chapters:
       You look around the tower and notice that a fly has fallen onto the window ledge.
       "just the thing I need to start my first spell" you think to yourself. What do you do?`,
       choices: [ 
-      {choice: 'Work on chores', result: 'wizards tower'},
-      {choice: 'Enter crafting room', result: 'crafting room'},
+      {choice: 'Work on chores', result: 'wizardsTower'},
+      {choice: 'Enter crafting room', result: 'craftingRoom'},
       {choice: 'Enter observation deck', result: 'observation deck'},
       {choice: 'Collect fly', result: 'fly'}
     ]
-  }
+  },
+  wizardsTower: {
+    title: 'You mop around the tower and continue to daydream of life in the big city',
+    story:'As you do chores.....',
+    choices: [
+      {choice: 'Enter crafting room', result: 'justAsYouBegin'},
+      {choice: 'Enter observation deck', result: 'justAsYouBegin'},
+      {choice: 'Collec tfly', result: 'justAsYouBegin'},
+      {choice: 'Continue Chores', result: 'justAsYouBegin'}
+    ]
+},
+craftingRoom: {
+  title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
+  story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
+  choices: [
+    { choice: 'Open book', result: 'Just as you begin..',
+      choice: 'Mix potions', result: 'Just as you begin..',
+      choice: 'Collect fly', result: 'Just as you begin..',
+      choice: 'Continue Chores', result: 'Just as you begin..'}
+    ]
+  },
+  justAsYouBegin: {
+    title: 'Just as you begin..',
+    story:'The Wizard Glik enters the room and...',
+    choices: [
+      {choice: 'Enter crafting room', result: 'Just as you begin..'},
+      {choice: 'Enter observation deck', result: 'Just as you begin..'},
+      {choice: 'Collec tfly', result: 'Just as you begin..'},
+      {choice: 'Continue Chores', result: 'Just as you begin..'}
+    ]
+},
 }
-
-
-
-
 
 
 
@@ -43,7 +66,7 @@ let story = {chapters:
 
 const input = document.getElementById("start-input")
 const titleScreen = document.getElementById("title-screen")
-
+const buttons = document.querySelector("#button")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -51,51 +74,82 @@ const titleScreen = document.getElementById("title-screen")
 input.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     const userInput = input.value
-    console.log(userInput)
     input.value = ''
     titleScreen.innerHTML = 
     `<h1>
     You are the apprentice to the evil wizard Glik, who tricked you into his employment.
     Your goal is to find a way to put this chapter of your life behind you so that you can go to the city of Prussia and make it big as a bard.
-    What is your name?  <input id="name-input" type="text"></input>
+    What is your name?  <input id="start-input" type="text"></input>
     </h2>`
-    const nameInput = document.getElementById("name-input")
+    const nameInput = document.getElementById("start-input")
     nameInput.addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         const userInput = input.value
-        console.log(userInput)
-        input.value = ''
-        titleScreen.innerHTML = 
-        `<h1>${story[story.chapters].title}</h1>
-        <h3>${story[story.chapters].story}</h3>
-        ${playerInput()}`
       }
+    
+      input.value = ''
+      titleScreen.innerHTML = 
+      `<h1>${story[story.chapters].title}</h1>
+      <h3>${story[story.chapters].story}</h3>
+      ${playerInput()}`
+      /////
+      addInputListeners()
     })
   }
 })
 
+////////////
+ function addInputListeners() {
+  const inputButtons = document.querySelectorAll('#buttons button')
+  for(let i = 0; i <inputButtons.length; i++) {
+    inputButtons[i].addEventListener('click', handlePlayerInput)
+  }
+ }
 
 
 
 
 /*-------------------------------- Functions --------------------------------*/
 
-
+function inputValue() {
+  let inputs = document.querySelectorAll('input[type="button"]')
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].clicked) {
+   story.chapters = (inputs[i].getAttribute('result'))
+   render()
+    }
+  }
+}
 
 playerInput()
 function playerInput() {
   let input = ''
-  for(let i = 0; i <  story.chapter1.choices.length; i++) {
+  for(let i = 0; i <  story[story.chapters].choices.length; i++) {
     input +=
       `<div id="buttons" class="button-box">
-      <button id="button">${story[story.chapters].choices[i].choice}</button>
+      <button result = ${story[story.chapters].choices[i].result} id="button">${story[story.chapters].choices[i].choice}</button>
       </div>`
   }
   
   return input
 }
 
+function handlePlayerInput(event) {
+  const result = event.target.getAttribute('result')
+  if (result) {
+    story.chapters = result
+    render()
+  }
+}
 
+// render the current chapter of the story
+function render() {
+  titleScreen.innerHTML = 
+    `<h1>${story[story.chapters].title}</h1>
+    <h3>${story[story.chapters].story}</h3>
+    ${playerInput()}`
+  addInputListeners() 
+}
 
 // let story = {chapter1: {title: 'chapter 1', story: `You head to the head down to the crafting room where Glik works on his spells. You have snuck in here a few times before so you know his spell book is
 //     on the table where he keeps his beakers and potions. You also see his bed to the left. And a cabinet to the left of that.`,
