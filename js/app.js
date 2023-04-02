@@ -7,8 +7,9 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let story = { chapter1: {title: 'The Wizards Tower', 
-story:`The Wizard Glik has just stepped out to run errands. He will be back in 5 minutes.
+let story = {chapters: 
+      'chapter1', chapter1: {title: 'The Wizards Tower', 
+      story:`The Wizard Glik has just stepped out to run errands. He will be back in 5 minutes.
       </p>
       <p>
       "Don't forget your chores and you are NOT allowed in my crafting room! OR the observation deck" the wizard says.
@@ -65,8 +66,8 @@ input.addEventListener("keydown", function(event) {
         console.log(userInput)
         input.value = ''
         titleScreen.innerHTML = 
-        `<h1>${story.chapter1.title}</h1>
-        <h3>${story.chapter1.story}</h3>
+        `<h1>${story[story.chapters].title}</h1>
+        <h3>${story[story.chapters].story}</h3>
         ${playerInput()}`
       }
     })
@@ -78,15 +79,17 @@ input.addEventListener("keydown", function(event) {
 
 
 /*-------------------------------- Functions --------------------------------*/
+
+
+
 playerInput()
 function playerInput() {
   let input = ''
   for(let i = 0; i <  story.chapter1.choices.length; i++) {
     input +=
       `<div id="buttons" class="button-box">
-      <button id="button">${story.chapter1.choices[i].choice}</button>
+      <button id="button">${story[story.chapters].choices[i].choice}</button>
       </div>`
-    console.log(story.chapter1.choices[i].choice)
   }
   
   return input
