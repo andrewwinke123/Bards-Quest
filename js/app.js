@@ -20,16 +20,17 @@ let story = {chapters:
   For weeks you have been sneaking into his crafting room to learn his spells.
   You have hit a brick wall with your discrete training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
       You look around the tower and notice that a fly has fallen onto the window ledge.
-      "just the thing I need to start my first spell" you think to yourself. What do you do?`,
+      "just the thing I need to start my first spell" you think to yourself. The wizard could come home at any moment.... What do you do?`,
       choices: [ 
         {choice: 'Work on chores', result: 'wizardsTower'},
       {choice: 'Enter crafting room', result: 'craftingRoom'},
       {choice: 'Enter observation deck', result: 'observation deck'},
-      {choice: 'Collect fly', result: 'fly'}
+      {choice: 'Collect fly', result: 'fly',
+      state: {flyWings: true}}
     ]
   },
   wizardsTower: {
-    title: 'You mop around the tower and continue to daydream of life in the big city',
+    title: 'You sweep around the tower and continue to daydream of life in the big city',
     story:'As you do chores.....',
     choices: [
       {choice: 'Enter crafting room', result: 'justAsYouBegin'},
@@ -44,21 +45,19 @@ craftingRoom: {
   choices: [
     {choice: 'Open book', result: 'openBook'},
     {choice: 'Mix potions', result: 'mixPotionsFly',
-    requiredState: (state) => state.flyWings && state.mixer,
-    state: {flyWings: false, mixer: false, flyPotion: true}},
-      {choice: 'Mix potions', result: 'mixPotionsFail',
-      requiredState: (state) => state.flyWings && state.mixer},
-      {choice: 'Continue Chores', result: 'Just as you begin..'}
+    requiredState: (state) => state.flyWings,
+    state: {flyWings: false, flyPotion: true}},
+      {choice: 'Continue Chores', result: 'justInTime'}
     ]
   },
   justAsYouBegin: {
     title: 'Just as you begin..',
-    story:'The Wizard Glik enters the room and...',
+    story:'The Wizard Glik returns home and you slip passed him back to your chores out in the main room.',
     choices: [
-      {choice: 'Enter crafting room', result: 'Just as you begin..'},
-      {choice: 'Enter observation deck', result: 'Just as you begin..'},
-      {choice: 'Collect fly', result: 'Just as you begin..'},
-      {choice: 'Continue Chores', result: 'Just as you begin..'}
+      {choice: 'Enter crafting room', result: 'gliksHome'},
+      {choice: 'Enter observation deck', result: 'gliksHome'},
+      {choice: 'Collect fly', result: 'gliksHome'},
+      {choice: 'Continue Chores', result: 'glikLeaves'}
     ]
   },
   fly: {
@@ -71,7 +70,65 @@ craftingRoom: {
       {choice: 'Enter observation deck', result: 'observation deck'}
     ]
   },
+  mixPotionsFly: {
+    title: 'You pour the potions',
+    story:'You successfully mix your first spell! An elixir to help you fly.',
+    choices: [
+      {choice: 'Exit the crafting room', result: 'inTheTower'},
+      {choice: 'Search the cabinet', result: 'justAsYouBegin'},
+      {choice: 'Continue Chores', result: 'justInTime'}
+    ]
+  },
+  inTheTower: {
+    title: 'You exit the Gliks crafting room',
+    story:'As you re-enter the main room of the tower you think to yourself "what should I do next?" "when will the wizard return?"',
+    choices: [
+      {choice: 'Enter observation deck', result: 'justAsYouBegin'},
+      {choice: 'Search Gliks room', result: 'gliksRoom'},
+      {choice: 'Continue Chores', result: 'justAsYouBegin'}
+    ]
+  },
+  gliksRoom: {
+    title: 'You enter Gliks room',
+    story:`as you enter the wizards room you are taken aback by the terrible smell. You look around to find that there isn't much in here, a bed, a globe, a couch, dirty robes in a pile.
+    "this must be why he spends so much of his free time in town." you think to yourself.`,
+    choices: [
+      {choice: 'Check globe', result: 'justAsYouBegin'},
+      {choice: 'Search pile of robes', result: 'justAsYouBegin'},
+      {choice: 'Continue Chores', result: 'justAsYouBegin'}
+    ]
+  },
+  justInTime: {
+    title: 'Just in time!',
+    story:'Right as Glik appears in the tower you jump back to your chores and he is none the wiser',
+    choices: [
+      {choice: 'Enter crafting room', result: 'gliksHome'},
+      {choice: 'Enter observation deck', result: 'gliksHome'},
+      {choice: 'Continue Chores', result: 'glikLeaves'}
+    ]
+  },
+  gliksHome: {
+    title: 'ZaaaAAAaaaAAAaap!',
+    story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells`,
+    choices: [
+      {choice: 'Enter crafting room', result: 'gliksHome'},
+      {choice: 'Enter observation deck', result: 'gliksHome'},
+      {choice: 'Continue Chores', result: 'glikLeaves'}
+    ]
+  },
+  glikLeaves: {
+    title: 'After an indeterminate amount of time doing chores....',
+    story:'Glik finally heads for town again. "cant wait until im in Prussia playing music on the big stage!" you think to yourself.',
+    choices: [
+      {choice: 'Work on chores', result: 'wizardsTower'},
+      {choice: 'Enter crafting room', result: 'craftingRoom'},
+      {choice: 'Enter observation deck', result: 'observation deck'},
+      {choice: 'Collect fly', result: 'fly',
+      state: {flyWings: true}}
+    ]
 }
+}
+
 
 
 
@@ -85,6 +142,8 @@ const titleScreen = document.getElementById("title-screen")
 const buttons = document.querySelector("#button")
 
 /*----------------------------- Event Listeners -----------------------------*/
+
+
 
 //control for input box for open of game, leading into the opening plot and the transition to the story
 input.addEventListener("keydown", function(event) {
@@ -113,7 +172,7 @@ input.addEventListener("keydown", function(event) {
     })
   }
 })
-//////////////////////////////
+/////////////code related to inventory/////////////////
 function start() {
   state = {}
   story.chapter1[1]
@@ -124,11 +183,11 @@ function newOption(option) {
 }
 
 function optionChoice(option) {
-  state = object.assign(state, option.setState)
+  state = object.assign(state, option.state)
 }
 
 start()
-//////////////////////////////
+/////////////code related to inventory/////////////////
 function addInputListeners() {
   const inputButtons = document.querySelectorAll('#buttons button')
   for(let i = 0; i <inputButtons.length; i++) {
@@ -160,6 +219,7 @@ function playerInput() {
       <button result = ${story[story.chapters].choices[i].result} id="button">${story[story.chapters].choices[i].choice}</button>
       </div>`
   }
+  
   
   return input
 }
