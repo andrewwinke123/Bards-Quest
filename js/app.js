@@ -5,7 +5,11 @@ let state = {}
 
 
 
-/*---------------------------- Variables (state) ----------------------------*/
+/*---------------------------- Story ----------------------------*/
+
+
+
+
 
 let story = {chapters: 
   'chapter1', chapter1: {title: 'The Wizards Tower', 
@@ -22,9 +26,9 @@ let story = {chapters:
       You look around the tower and notice that a fly has fallen onto the window ledge.
       "just the thing I need to start my first spell" you think to yourself. The wizard could come home at any moment.... What do you do?`,
       choices: [ 
-        {choice: 'Work on chores', result: 'wizardsTower'},
+      {choice: 'Work on chores', result: 'wizardsTower'},
       {choice: 'Enter crafting room', result: 'craftingRoom'},
-      {choice: 'Enter observation deck', result: 'observation deck'},
+      {choice: 'Enter observation deck', result: 'observationDeck'},
       {choice: 'Collect fly', result: 'fly',
       state: {flyWings: true}}
     ]
@@ -32,6 +36,16 @@ let story = {chapters:
   wizardsTower: {
     title: 'You sweep around the tower and continue to daydream of life in the big city',
     story:'As you do chores.....',
+    choices: [
+      {choice: 'Enter crafting room', result: 'justAsYouBegin'},
+      {choice: 'Enter observation deck', result: 'justAsYouBegin'},
+      {choice: 'Collect fly', result: 'justAsYouBegin'},
+      {choice: 'Continue Chores', result: 'justAsYouBegin'}
+    ]
+},
+  observationDeck: {
+    title: '',
+    story:'',
     choices: [
       {choice: 'Enter crafting room', result: 'justAsYouBegin'},
       {choice: 'Enter observation deck', result: 'justAsYouBegin'},
@@ -143,7 +157,18 @@ const buttons = document.querySelector("#button")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-
+//timer for Gliks return
+let timeLeft = 10
+let timer = setInterval(function() {
+    timeLeft -= 1
+   if (timeLeft < 0) {
+    clearInterval(timer)
+    const titleScreen = document.getElementById("title-screen")
+    titleScreen.innerHTML = `<h1>The Wizard Glik has returned home</h1>`
+    setTimeout(function() {
+    }, 0)
+}
+}, 10000)
 
 //control for input box for open of game, leading into the opening plot and the transition to the story
 input.addEventListener("keydown", function(event) {
@@ -187,7 +212,7 @@ function optionChoice(option) {
 }
 
 start()
-/////////////code related to inventory/////////////////
+/////////////code related to inventory//////////////////
 function addInputListeners() {
   const inputButtons = document.querySelectorAll('#buttons button')
   for(let i = 0; i <inputButtons.length; i++) {
@@ -240,13 +265,3 @@ function render() {
     ${playerInput()}`
   addInputListeners() 
 }
-
-// let story = {chapter1: {title: 'chapter 1', story: `You head to the head down to the crafting room where Glik works on his spells. You have snuck in here a few times before so you know his spell book is
-//     on the table where he keeps his beakers and potions. You also see his bed to the left. And a cabinet to the left of that.`,
-//     choices: [ {choice: 'look', result: 'crafting room'},
-//       {choice: 'read book', result: 'book'},
-//       {choice: 'open cabinet', result: 'cabinet'},
-//       {choice: 'mix potions' && 'mix beakers', result: 'mix potions'}
-//     ]
-//   }
-// }
