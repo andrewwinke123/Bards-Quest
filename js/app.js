@@ -1,12 +1,35 @@
 
 let state = {}
 
+let flyCollected = false
 
 
+function collectFly() {
+  flyCollected = true 
+  showOptions()
+}
+
+function showOptions() {
+  if (flyCollected) {
+
+}
+}
 
 
 /*---------------------------- Story ----------------------------*/
 
+function selectOption(option) {
+  const storyId = option.requiredState == null || option.requiredState (state)
+}
+
+
+function selectOption(option) {
+  const nextStoryId = option.nextStoryId
+  if (nextStoryId === -1) {
+    state = Object.assign(state, option.selectState)
+    showStory(nextStoryId)
+  }
+}
 
 
 
@@ -25,12 +48,13 @@ let story = {chapters:
   You have hit a brick wall with your discrete training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
       You look around the tower and notice that a fly has fallen onto the window ledge.
       "just the thing I need to start my first spell" you think to yourself. The wizard could come home at any moment.... What do you do?`,
+      image: '1.png',
       choices: [ 
       {choice: 'Work on chores', result: 'wizardsTower'},
       {choice: 'Enter crafting room', result: 'craftingRoom'},
       {choice: 'Enter observation deck', result: 'observationDeck'},
       {choice: 'Collect fly', result: 'fly',
-      state: {flyWings: true}}
+      setState: {flyCollected: true}}
     ]
   },
   wizardsTower: {
@@ -57,12 +81,10 @@ craftingRoom: {
   title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
   story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
   choices: [
-    {choice: 'Open book', result: 'openBook'},
-    {choice: 'Mix potions', result: 'mixPotionsFly',
-    requiredState: (state) => state.flyWings,
-    state: {flyWings: false, flyPotion: true}},
+      {choice: 'Open book', result: 'openBook'},
+      {choice: flyCollected ? 'Mix potions' : 'fail', result: flyCollected ? 'mixPotionsFly' : 'justInTime'},
       {choice: 'Continue Chores', result: 'justInTime'}
-    ]
+      ]
   },
   justAsYouBegin: {
     title: 'Just as you begin..',
@@ -77,7 +99,7 @@ craftingRoom: {
   fly: {
     title: 'you pick up the fly',
     story: 'remembering that fly wings are an important component of the flight spell, you quickly grab the fly and put it into your inventory.',
-    state: {flyWings: true},
+    collectFly: {flyWings: true},
     choices: [
       {choice: 'Work on chores', result: 'wizardsTower'},
       {choice: 'Enter crafting room', result: 'craftingRoom'},
@@ -140,13 +162,20 @@ craftingRoom: {
       {choice: 'Collect fly', result: 'fly',
       state: {flyWings: true}}
     ]
+},
+timerEvent: {
+  title: 'QUICKLY, hide what you are doing and stay out if his way',
+  story:'As you do chores.....',
+  choices: [
+      {choice: 'Enter crafting room', result: 'justAsYouBegin'},
+      {choice: 'Enter observation deck', result: 'justAsYouBegin'},
+      {choice: 'Collect fly', result: 'justAsYouBegin'},
+      {choice: 'Continue Chores', result: 'justAsYouBegin'}
+  ]
 }
+
+
 }
-
-
-
-
-
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -164,7 +193,10 @@ let timer = setInterval(function() {
    if (timeLeft < 0) {
     clearInterval(timer)
     const titleScreen = document.getElementById("title-screen")
-    titleScreen.innerHTML = `<h1>The Wizard Glik has returned home</h1>`
+    titleScreen.innerHTML = 
+    `<h1>The Wizard Glik has returned home</h1>
+    <h3>${story.timerEvent.title}</h3>
+    ${wizardsHome()}`
     setTimeout(function() {
     }, 0)
 }
@@ -190,7 +222,6 @@ input.addEventListener("keydown", function(event) {
       input.value = ''
       titleScreen.innerHTML = 
       `<h1>${story[story.chapters].title}</h1>
-      <h3>${story[story.chapters].story}</h3>
       ${playerInput()}`
 
       addInputListeners()
@@ -231,12 +262,33 @@ function inputValue() {
     if (inputs[i].clicked) {
    story.chapters = (inputs[i].getAttribute('result'))
    render()
+   return
     }
   }
+// story.chapters = story[story.chapters].defaultResult
+// renderScene()
 }
 
 playerInput()
 function playerInput() {
+  let input = ''
+  // if (!story[story.chapters].choices) {
+  //   return ''
+  // }
+  for(let i = 0; i <  story[story.chapters].choices.length; i++) {
+    input +=
+      `<div id="buttons" class="button-box">
+      <button result = ${story[story.chapters].choices[i].result} id="button">${story[story.chapters].choices[i].choice}</button>
+      </div>`
+  }
+  
+  
+  return input
+}
+
+
+wizardsHome ()
+function wizardsHome() {
   let input = ''
   for(let i = 0; i <  story[story.chapters].choices.length; i++) {
     input +=
@@ -249,6 +301,7 @@ function playerInput() {
   return input
 }
 
+
 function handlePlayerInput(event) {
   const result = event.target.getAttribute('result')
   if (result) {
@@ -259,6 +312,9 @@ function handlePlayerInput(event) {
 
 // render the current chapter of the story
 function render() {
+  let text = ''
+  let image = ''
+  if (story[story.chapters].image)
   titleScreen.innerHTML = 
     `<h1>${story[story.chapters].title}</h1>
     <h3>${story[story.chapters].story}</h3>
