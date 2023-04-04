@@ -53,6 +53,7 @@ choices: [
 craftingRoom: {
 title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
 story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
+image: '1.png',
 choices: [
 { choice: 'Open book', result: 'openBook'},
   {choice: 'Mix potions', result: 'Just as you begin..'},
@@ -63,6 +64,7 @@ choices: [
   openBook: {
 title: 'Just as you begin..',
 story:`The Wizard Glik enters the room and...`,
+image: '2.png',
 choices: [
 {choice: 'Restart Game', result: 'chapter1'}
 ]
@@ -171,38 +173,54 @@ nameInput.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     const userInput = input.value
   }
-
   input.value = ''
   titleScreen.innerHTML = 
   `<h1>${story[story.chapters].title}</h1>
   <h3>${story[story.chapters].story}</h3>
   ${playerInput()}`
-  /////
   addInputListeners()
 })
 
 ////////////
 function addInputListeners() {
-const inputButtons = document.querySelectorAll('#buttons button')
-for(let i = 0; i <inputButtons.length; i++) {
-inputButtons[i].addEventListener('click', handlePlayerInput)
+  const inputButtons = document.querySelectorAll('#buttons button')
+  for(let i = 0; i <inputButtons.length; i++) {
+    inputButtons[i].addEventListener('click', handlePlayerInput)
+  }
 }
-}
 
 
 
+bodyEl = document.getElementById('body')
 
 /*-------------------------------- Functions --------------------------------*/
 // render the current chapter of the story
 
 
 function render() {
+  let text = 'next'
+  let image = ''
+  if (story[story.chapters].image) {
+    image = '<img></img>'
+  }
 titleScreen.innerHTML = 
 `<h1>${story[story.chapters].title}</h1>
 <h3>${story[story.chapters].story}</h3>
+${image}
 ${playerInput()}`
 addInputListeners() 
+  // document.querySelector("img").src = `./img/${story[story.chapters].image}`
+  bodyEl.style.backgroundImage = `url(./img/${story[story.chapters].image})`
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -220,6 +238,14 @@ story.chapters = story[story.chapters].defaultResult
 render()
 }
 
+
+
+
+
+
+
+
+
 playerInput()
 function playerInput() {
 let input = ''
@@ -236,6 +262,16 @@ input +=
 
 return input
 }
+
+
+
+
+
+
+
+
+
+
 
 function handlePlayerInput(event) {
 const result = event.target.getAttribute('data-result')
