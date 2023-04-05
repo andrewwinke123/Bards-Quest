@@ -1,10 +1,3 @@
-
-
-
-
-
-/*---------------------------- Variables (state) ----------------------------*/
-
 let story = {chapters: 
   'chapter1', chapter1: {title: 'Welcome to Gliks Tower', 
   story:`<div class="flex-child-2"> <h1>
@@ -44,12 +37,12 @@ so you know there might not be a door at all. But perhaps there is one hidden ar
 image: 'WizardsTower.jpg',
 choices: [
   {choice: 'Enter crafting room', result: 'locked'},
-  {choice: 'Enter observation deck', result: 'justAsYouBegin'},
+  {choice: 'Enter observation deck', result: 'observationDeck'},
   {choice: 'Collect fly', result: 'fly'},
 ]
 },
 craftingRoom: {
-title: `<div id="onePng" >You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.</div>`,
+title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
 story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
 image: '1.png',
 choices: [
@@ -97,7 +90,7 @@ locked: {
       {choice: 'Continue Chores', result: 'Just as you begin..'}
     ]
   },
-  justAsYouBegin: {
+  observationDeck: {
     title: 'Just as you begin..',
     story:'The Wizard Glik enters the room and...',
     choices: [
@@ -107,7 +100,7 @@ locked: {
     {choice: 'Continue Chores', result: 'Just as you begin..'}
   ]
   },
-  justAsYouBegin: {
+  blue: {
     title: 'Just as you begin..',
     story:'The Wizard Glik enters the room and...',
     choices: [
@@ -117,7 +110,7 @@ locked: {
       {choice: 'Continue Chores', result: 'Just as you begin..'}
     ]
   },
-  justAsYouBegin: {
+  red: {
     title: 'Just as you begin..',
       story:'The Wizard Glik enters the room and...',
       choices: [
@@ -176,145 +169,11 @@ glikLeaves: {
   }
   
 }
-
-
-/*------------------------ Cached Element References ------------------------*/
-
-
-const input = document.getElementById("start-input")
-const titleScreen = document.getElementById("title-screen")
-const buttons = document.querySelector("#button")
-
-/*----------------------------- Event Listeners -----------------------------*/
-
-//control for input box for open of game, leading into the opening plot and the transition to the story
-const nameInput = document.getElementById("start-input")
-nameInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    const userInput = input.value
-  }
   
-  input.value = ''
-  titleScreen.innerHTML = 
-  `<h1>${story[story.chapters].title}</h1>
-  <h3>${story[story.chapters].story}</h3>
-  ${playerInput()}`
-  addInputListeners()
-})
 
 
 
-function addInputListeners() {
-  const inputButtons = document.querySelectorAll('#buttons button')
-  for(let i = 0; i <inputButtons.length; i++) {
-    inputButtons[i].addEventListener('click', handlePlayerInput)
+
+  export {
+    story,
   }
-}
-
-
-
-bodyEl = document.getElementById('body')
-
-/*-------------------------------- Functions --------------------------------*/
-// render the current chapter of the story
-
-
-function render() {
-  let text = 'next'
-  let image = ''
-  // if (story[story.chapters].image) {
-  //   image = '<img></img>'
-  // }
-titleScreen.innerHTML = 
-`<h1>${story[story.chapters].title}</h1>
-<h3>${story[story.chapters].story}</h3>
-${image}
-${playerInput()}`
-addInputListeners() 
-  bodyEl.style.backgroundImage = `url(./img/${story[story.chapters].image})`
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-function inputValue() {
-let inputs = document.querySelectorAll('input[type="button"]')
-for (let i = 0; i < inputs.length; i++) {
-if (inputs[i].clicked) {
-story.chapters = (inputs[i].getAttribute('data-result'))
-render()
-return
-}
-}
-story.chapters = story[story.chapters].defaultResult
-render()
-}
-
-
-
-
-
-
-
-
-
-playerInput()
-function playerInput() {
-let input = ''
-if (!story[story.chapters].choices) {
-  return ''
-}
-for(let i = 0; i <  story[story.chapters].choices.length; i++) {
-input +=
-  `<div class="flex-child-2" id="buttons" class="button-box">
-  <button data-result = ${story[story.chapters].choices[i].result} 
-  id="button">${story[story.chapters].choices[i].choice}</button>
-  </div>`
-}
-
-return input
-}
-
-
-
-
-
-
-
-// let play = document.getElementById("play")
-// function playMusic() {
-//   let audio = new Audio("../sounds/Bite.mp3")
-//   audio.play()
-// }
-
-// playerInput.addEventListener('click', playMusic)
-
-
-
-function handlePlayerInput(event) {
-const result = event.target.getAttribute('data-result')
-if (result) {
-story.chapters = result
-render()
-}
-}
-
-
-
-
-
-
-
-const restartButton = document.querySelector("#restartGame")
-function restartGame(restartButton) {
-  return titleScreen
-}
