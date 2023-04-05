@@ -1,9 +1,7 @@
-
-let audio = new Audio("../sounds/Bite.mp3")
-
+let audio = new Audio("../sounds/typing-short.mp3")
 import {story} from "./data.js"
 
-
+audio.play()
 
 /*------------------------ Cached Element References ------------------------*/
 
