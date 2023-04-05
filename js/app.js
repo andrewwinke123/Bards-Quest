@@ -4,9 +4,6 @@ let audio = new Audio("../sounds/Bite.mp3")
 import {story} from "./data.js"
 
 
-/*---------------------------- Variables (state) ----------------------------*/
-
-
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -43,7 +40,7 @@ function addInputListeners() {
 
 
 
-bodyEl = document.getElementById('body')
+const bodyEl = document.getElementById('body')
 
 /*-------------------------------- Functions --------------------------------*/
 // render the current chapter of the story
@@ -81,18 +78,18 @@ bodyEl.style.backgroundImage = `url(./img/${story[story.chapters].image})`
 
 
 
-function inputValue() {
-let inputs = document.querySelectorAll('input[type="button"]')
-for (let i = 0; i < inputs.length; i++) {
-if (inputs[i].clicked) {
-story.chapters = (inputs[i].getAttribute('data-result'))
-render()
-return
-}
-}
-story.chapters = story[story.chapters].defaultResult
-render()
-}
+// function inputValue() {
+// let inputs = document.querySelectorAll('input[type="button"]')
+// for (let i = 0; i < inputs.length; i++) {
+// if (inputs[i].clicked) {
+// story.chapters = (inputs[i].getAttribute('data-result'))
+// render()
+// return
+// }
+// }
+// story.chapters = story[story.chapters].defaultResult
+// render()
+// }
 
 
 
@@ -136,7 +133,7 @@ render()
 
 
 
-const restartButton = document.querySelector("#restartGame")
-function restartGame(restartButton) {
-  return titleScreen
-}
+// const restartButton = document.querySelector("#restartGame")
+// function restartGame(restartButton) {
+//   return titleScreen
+// }
