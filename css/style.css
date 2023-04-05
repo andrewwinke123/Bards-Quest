@@ -64,9 +64,9 @@ html{
 body{
   height: calc(100vh - 8em);
   padding: 4em;
-  color: rgba(255,255,255,.75);
+  color: rgba(0, 0, 0, 0.75);
   font-family: 'Anonymous Pro', monospace;  
-  background-color: rgb(25,25,25);  
+  background-color: rgb(117, 117, 117);  
 }
 .line-1{
     position: relative;
