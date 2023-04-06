@@ -19,7 +19,7 @@ beginQuest: {
   As the wizard leaves and you mosey around the his tower, you daydream about one day finding a way out of the wizards legally biding contract spell,
   which you foolishly fell for one month prior, and which legally bound you to his employment for the next 10 years. (Gamehindge is a "right to work state," and as such, workers rights are not very abundant). 
   For weeks you have been sneaking into his crafting room to learn his spells.
-  You have hit a brick wall with your discrete training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
+  You have hit a brick wall with your secret training however, and the wizard doesn't leave for long thanks to his power of teleportaion. 
   You look around the tower and notice flies gathering outside the window.
   "just the thing I need to start my first spell" you think to yourself. What do you do?</div>`,
 choices: [
@@ -217,7 +217,11 @@ lawyer: {
     {choice: 'Restart Game', result: 'chapter1'}
   ]
 },
-/////////////////////////////////////////////////////////
+//-----------------bellow is any path taken after a fly is caught denoted by an F at the end of the result-------------------------------//
+
+
+
+
 
 kitchenF: {
   title: 'You enter the kitchen',

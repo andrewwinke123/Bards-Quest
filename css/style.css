@@ -92,7 +92,7 @@ body{
     transform: translateY(-20%);    
 }
 
-/* Animation */
+/* Animation ---> https://css-tricks.com/snippets/css/typewriter-effect/ */
 .anim-typewriter{
   animation: typewriter 4s steps(44)  1 normal both,
              blinkTextCursor 50ms steps(5) infinite normal;
