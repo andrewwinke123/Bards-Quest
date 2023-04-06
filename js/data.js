@@ -43,7 +43,6 @@ choices: [
 craftingRoom: {
 title: `You enter the little office where Glik studies his texts. Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.`,
 story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
-image: '1.png',
 choices: [
   {choice: 'Mix potions', result: 'mixPotions'},
   {choice: 'Turn back', result: 'turnAround'}
@@ -54,7 +53,7 @@ fly: {
   story: 'As you swat the flies away, you remember that fly wings, or eagle feathers, are a crucial component of the fly spell, you squash one and save it for later.',
   choices: [
     {choice: 'Blue liquid', result: 'blue'},
-    {choice: 'Red liquid', result: 'red'},
+    {choice: 'Red liquid', result: 'redF'},
     {choice: 'Turn back', result: 'turnAround'}
   ]
 },
@@ -63,7 +62,7 @@ locked: {
   story:`The Wizard Glik doesn't want anyone going in here`,
   choices: [
     {choice: 'Enter observation deck', result: 'observationDeck'},
-    {choice: 'Continue Chores', result: 'Just as you begin..'},
+    {choice: 'Look around', result: 'wizardsTower'},
     {choice: 'Enter Kitchen', result: 'kitchen'}
    ]
   },
@@ -135,37 +134,46 @@ locked: {
       {choice: 'sleep', result: 'gliksHome'},
     ]
   },
-  gliksHome: {
-    title: 'ZaaaAAAaaaAAAaap!',
-    story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells
-    <div class="lose"><p>YOU LOSE!!!!!!</P></div>`,
+  redF: {
+    title: 'You drink the red potion...',
+    story:'Right as you finish it off you begin to shrink. Understanding that this is likely temporary you rush to to Gliks crafting room where you slip under the door',
     choices: [
-      {choice: 'Restart Game', result: 'chapter1'}
+      {choice: 'Look around crafting room', result: 'craftingRoom'},
     ]
-  },
+},
+red: {
+  title: 'You grab the red potion...',
+  story:`"shrink potion" it says on the back. Knowing that you only have one shot at this, you put it back and you save it for the right moment.
+  <p>"I should come back later for this" you say</p>`,
+  choices: [
+    {choice: 'Blue liquid', result: 'blue'},
+    {choice: 'Check the fridge', result: 'fridge'},
+    {choice: 'Turn back', result: 'turnAround'}
+  ]
+},
+openBook: {
+  title: 'You open Gliks journal...',
+  story:`The book marked page goes into detail about how fly and eagle wings can be used to craft potions of flight.`,
+  choices: [
+    {choice: 'Take a seat', result: 'seat'},
+    {choice: 'Look in telescope', result: 'telescope'},
+    {choice: 'Head back inside', result: 'turnAround'},
+  ]
+},
+gliksHome: {
+  title: 'ZaaaAAAaaaAAAaap!',
+  story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells
+  <div class="lose"><p>YOU LOSE!!!!!!</P></div>`,
+  choices: [
+    {choice: 'Restart Game', result: 'chapter1'}
+  ]
+},
 blue: {
   title: 'You drink the blue potion..',
   story:`You are now a bluejay. Not quite what you wanted, but now you can live your days flying the skies which is pretty cool too I guess
   <div class="lose"><p>YOU LOSE?<p></div>`,
   choices: [
     {choice: 'Restart Game', result: 'chapter1'}
-  ]
-},
-redF: {
-  title: 'You drink the red potion...',
-    story:'Right as you finish it off you begin to shrink. Understanding that this is likely temporary you rush to to Gliks crafting room where you slip under the door',
-    choices: [
-    {choice: 'Look around crafting room', result: 'craftingRoom'},
-  ]
-},
-openBook: {
-  title: 'You open Gliks journal...',
-  story:`The book marked page goes into detail about how fly and eagle wings can be used to craft potions of flight.`,
-  image: '2.png',
-  choices: [
-    {choice: 'Take a seat', result: 'seat'},
-    {choice: 'Look in telescope', result: 'telescope'},
-    {choice: 'Head back inside', result: 'turnAround'},
   ]
 },
 mixPotions: {
@@ -177,20 +185,38 @@ mixPotions: {
   ]
 },
 prussia: {
-  title: 'Just as you begin..',
-  story:'The Wizard Glik enters the room and...',
+  title: 'You set off for prussia',
+  story:`As a fly, it takes you incredibly long to get there, had you found an eagle feather this trip would have taken half of the time.
+  finally you make it though! The big city. You can finally hit the stage and make it big as a bard. <p>BUT THEN</p><p>famous workplace lawyer Celebrimbor taps you on shoulder.
+  <p>You sir are in violation of your workplace contract with The Wizard Glik. We are going to have to let the courts settle this.</p><p>YOU LOSE PROBABLY..</p>`,
   choices: [
     {choice: 'Restart Game', result: 'chapter1'}
   ]
 },
 schmof: {
-  title: 'Just as you begin..',
-  story:'The Wizard Glik enters the room and...',
+  title: 'You fly down to the village as fast as you can.',
+  story:'You turn back into a human and you wonder "what should I do next?',
+  choices: [
+    {choice: 'Hit the tavern', result: 'tavern'},
+    {choice: 'Catch a show', result: 'tavern'},
+    {choice: 'Find a lawyer', result: 'lawyer'}
+  ]
+},
+tavern: {
+  title: 'You enter the tavern to find...',
+  story:'None other than The Wizard Glik! And he is not happy to see you here.<p>"ARREST THEM!" he screams.<p>YOU LOSE</p>',
   choices: [
     {choice: 'Restart Game', result: 'chapter1'}
   ]
 },
-
+lawyer: {
+  title: 'You knock on the door to the law offices of Celebrimbor',
+  story:`Shocked and appalled to hear your story, Celebrimbor, the best workplace lawyer in the land takes up your case. After a long battle in court,
+  Glik LLC is dissolved as an entity and you are granted restitution which you used to launch your career as a bard at the nicest casino in Prussia.<p>THE END</p><p>YOU WIN</p>`,
+  choices: [
+    {choice: 'Restart Game', result: 'chapter1'}
+  ]
+},
 /////////////////////////////////////////////////////////
 
 kitchenF: {
@@ -210,7 +236,7 @@ fridgeF: {
     {choice: 'Blue liquid', result: 'blue'},
     {choice: 'Red liquid', result: 'redF'},
     {choice: 'Turn back', result: 'turnAroundF'}
-
+    
   ]
 },
 turnAroundF: {
@@ -256,7 +282,6 @@ tableF: {
 openBookF: {
   title: 'You open Gliks journal...',
   story:`The book marked page goes into detail about how fly and eagle wings can be used to craft potions of flight.`,
-  image: '2.png',
   choices: [
     {choice: 'Take a seat', result: 'seatF'},
     {choice: 'Look in telescope', result: 'telescopeF'},
@@ -274,21 +299,12 @@ wizardsTowerF: {
     {choice: 'Enter Kitchen', result: 'kitchenF'}
   ]
   },
-  fly: {
-    title: 'You swat at the flies',
-    story: 'As you swat the flies away, you remember that fly wings, or eagle feathers, are a crucial component of the fly spell, you squash one and save it for later.',
-    choices: [
-      {choice: 'Blue liquid', result: 'blue'},
-      {choice: 'Red liquid', result: 'red'},
-      {choice: 'Turn back', result: 'turnAroundF'}
-    ]
-  },
   lockedF: {
     title: 'The door is locked tight',
     story:'The Wizard Glik enters the room and...',
     choices: [
       {choice: 'Enter observation deck', result: 'observationDeckF'},
-      {choice: 'Continue Chores', result: 'Just as you begin..F'},
+      {choice: 'Look around', result: 'wizardsTowerF'},
       {choice: 'Enter Kitchen', result: 'kitchenF'}
      ]
     },
