@@ -11,13 +11,22 @@ The game in question --> https://bards-quest.netlify.app/
 To play, you will cycle through multiple choice prompts in a looping path that takes you through The Wizard Gliks tower as you try to escape. You will need to pay attention to any clues you may find to make your escape.
 
 
-I used HTML, CSS, and JavaScript to make this game.
+<br></br>
+
+I used HTML, CSS, JavaScript and Git to make this game.
 
 I would like to thank Sierra On-Line for making King's Quest 3 which inspired me to make this story.
 
 I would also like to thank https://css-tricks.com/snippets/css/typewriter-effect/ for my typewriter animation
 
+typing sound
 
+pictures
+
+font
+
+
+<br></br>
 
 NEXT STEPS:
 

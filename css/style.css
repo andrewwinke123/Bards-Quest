@@ -13,17 +13,19 @@ body {
     font-size: 28px;
 }
 
+.intro {
+    font-size: 28px;
+}
 
-.tower {
-    width: 100%;
-    height: auto;
-    max-width: 50vw;
-}    
+#start-input {
+    align-content: center;
+}
 
 
-.buttons {
+
+ #button {
     font-family: sans-serif;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 
@@ -98,10 +100,36 @@ body{
              blinkTextCursor 50ms steps(5) infinite normal;
 }
 @keyframes typewriter{
-  from{width: 0;}
-  to{width: 24em;}
+  from{width: 0};
+  to{width: 24em};
 }
 @keyframes blinkTextCursor{
-  from{border-right-color: rgba(255,255,255,.75);}
-  to{border-right-color: transparent;}
+  from{border-right-color: rgba(255,255,255,.75)};
+  to{border-right-color: transparent};
+}
+
+
+
+
+
+
+.character {
+    display: flex;
+    width: 20px;
+    height: 39px;
+    background: red;
+    overflow: hidden;
+}
+
+.character_spritesheet {
+    animation: moveSpritesheet 1s steps(17) infinite;
+}
+
+@keyframes moveSpritesheet {
+    from {
+        transform: translate3d(0px,0,0);
+    }
+    to {
+        transform: translate3d(-100%,0,0);
+    }
 }
