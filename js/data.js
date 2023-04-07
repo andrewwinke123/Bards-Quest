@@ -44,7 +44,7 @@ let story = {chapters: 'chapter1',
   craftingRoom: {
     title: `You enter the little office where Glik studies his texts.`,
     story: 'Across from you, you see a table with multiple beakers of liquids, and a book which you recognize as his spell book.',
-    image: 'craftingroom.jpg',
+    image: 'craftingtable.jpg',
     choices: [
       {choice: 'Mix potions', result: 'mixPotions'},
       {choice: 'Turn back', result: 'turnAround'}
