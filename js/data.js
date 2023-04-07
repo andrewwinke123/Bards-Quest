@@ -351,11 +351,11 @@ let story = {chapters: 'chapter1',
       {choice: 'friend', result: 'wrong'},
       {choice: 'pedo mellon a minno', result: 'chapter1'}
   ]
-}
+ }
 }
   
 
 
-  export {
-    story
-  }
+export {
+  story
+}

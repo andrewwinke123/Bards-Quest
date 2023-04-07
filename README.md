@@ -14,7 +14,7 @@ To play, you will cycle through multiple choice prompts in a looping path that t
 <br></br>
 # ATTRIBUTIONS
 
-I used HTML, CSS, JavaScript and Github to make this game.
+I used HTML, CSS, JavaScript, Adobe Illustrator and Github to make this game.
 
 I would like to thank Sierra On-Line for making King's Quest 3 which inspired me to make this story.
 
