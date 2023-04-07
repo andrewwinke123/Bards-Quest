@@ -1,13 +1,13 @@
-let story = {chapters: 
-  'chapter1', chapter1: 
-  {title: 'Welcome to Gliks Tower', 
+let story = {chapters: 'chapter1', 
+  chapter1: {
+    title: 'Welcome to Gliks Tower', 
     story:`<div class="intro">
     You are the apprentice to the evil wizard Glik, who tricked you into his employment.
     Your goal is to find a way to put this chapter of your life behind you so that you can go to the city of Prussia and make it big as a bard. </div>`,
     image: 'WizardsTower.jpg',
     choices: [ 
       {choice: 'Begin Quest?', result: 'beginQuest'}
-  ]
+    ]
   },
   beginQuest: {
     title: 'The Wizard Glik has just stepped out to run errands.', 
@@ -62,7 +62,6 @@ let story = {chapters:
   locked: {
     title: 'The door is locked tight',
     story:`The Wizard Glik doesn't want anyone going in here`,
-    image: 'door.jpg',
     choices: [
       {choice: 'Enter observation deck', result: 'observationDeck'},
       {choice: 'Look around', result: 'wizardsTower'},
@@ -71,7 +70,7 @@ let story = {chapters:
   },
   kitchen: {
     title: 'You enter the kitchen',
-    story:'The wizard rarely eats but the kitchen is still a mess. empty beakers everywhere on the counter, and 2 full ones in the midst of the broken glass.',
+    story:'The wizard rarely eats but the kitchen is still a mess. Empty beakers everywhere on the counter, and 2 full ones in the midst of the broken glass.',
     choices: [
       {choice: 'Blue liquid', result: 'blue'},
       {choice: 'Red liquid', result: 'red'},
@@ -168,7 +167,7 @@ let story = {chapters:
   },
   gliksHome: {
     title: 'ZaaaAAAaaaAAAaap!',
-    story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells
+    story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells.
     <div class="lose"><p>YOU LOSE!!!!!!</P></div>`,
     image: 'gameover-screen.jpg',
     choices: [
@@ -223,7 +222,7 @@ let story = {chapters:
   lawyer: {
     title: 'You knock on the door to the law office of Celebrimbor',
     story:`Shocked and appalled to hear your story, Celebrimbor, the best workplace lawyer in the land takes up your case. After a long battle in court,
-    Glik LLC is dissolved as an entity and you are granted restitution which you used to launch your career as a bard at the nicest casino in Prussia.<p>THE END</p>`,
+    Glik LLC is dissolved as an entity and you are granted restitution which you used to launch your career as a bard at the nicest casino in Prussia.`,
     image: 'lawyer.jpg',
     choices: [
       {choice: 'Restart Game', result: 'chapter1'}

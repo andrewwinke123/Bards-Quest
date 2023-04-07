@@ -19,7 +19,7 @@ nameInput.addEventListener("keydown", function(event) {
     const userInput = input.value
     input.value = ''
     titleScreen.innerHTML = 
-    `<div class="title anim-typewriter"><h1>${story[story.chapters].title}</h1></div>
+    `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
     <h3>${story[story.chapters].story}</h3>
     ${playerInput()}`
     addInputListeners()
