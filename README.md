@@ -50,4 +50,6 @@ More unique sound effects for each event that happens
 
 I want to add a parse input function with a word bank library
 
+A user interface that feels more like a computer form the 80s with a clue or two hidden in the margins of the UI
+
 Eventually, I would like to add an actual game board where you can walk around and explore a 2d over-world just like the King's Quest series

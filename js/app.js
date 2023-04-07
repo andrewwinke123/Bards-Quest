@@ -6,19 +6,18 @@ import {story} from "./data.js"
 /*------------------------ Cached Element References ------------------------*/
 
 
-const input = document.getElementById("start-input")
-const titleScreen = document.getElementById("title-screen")
-const buttons = document.querySelector("#button")
-const nameInput = document.getElementById("start-input")
+const inputEl = document.getElementById("start-input")
+const titleScreenEl = document.getElementById("title-screen")
+const nameInputEl = document.getElementById("start-input")
+const bodyEl = document.getElementById('body')
 
-/*----------------------------- Event Listeners -----------------------------*/
+/*---------------------------------------------------------------------------*/
 
 //control for input box for open of game, leading into the opening plot and the transition to the story
-nameInput.addEventListener("keydown", function(event) {
+nameInputEl.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    const userInput = input.value
-    input.value = ''
-    titleScreen.innerHTML = 
+    inputEl.value = ''
+    titleScreenEl.innerHTML = 
     `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
     <h3>${story[story.chapters].story}</h3>
     ${playerInput()}`
@@ -41,16 +40,10 @@ function addInputListeners() {
 
 
 
-const bodyEl = document.getElementById('body')
-
-/*-------------------------------- Functions --------------------------------*/
-// render the current chapter of the story
-
-
+/*----------------------------render the current chapter of the story----------*/
 function render() {
-  let text = 'next'
   let image = ''
-  titleScreen.innerHTML = 
+  titleScreenEl.innerHTML = 
   `<div class="title anim-typewriter"<h1>${story[story.chapters].title}</h1></div>
   <h3>${story[story.chapters].story}</h3>
   ${image}

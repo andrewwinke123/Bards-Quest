@@ -7,18 +7,23 @@ body {
 }
 
 
-
 .flex-child {
     font-family: sans-serif;
     font-size: 28px;
 }
 
-.intro {
-    font-size: 28px;
-}
 
 #start-input {
     align-content: center;
+}
+
+.story-intro {
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.intro {
+    font-size: 28px;
 }
 
 
@@ -26,7 +31,7 @@ body {
  #button {
     font-family: sans-serif;
     font-size: 15px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -42,12 +47,6 @@ button:hover {
     border-color: black;
     background-color: grey;
 }
-
-.story-intro {
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
 
 
 

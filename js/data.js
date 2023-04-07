@@ -167,7 +167,7 @@ let story = {chapters: 'chapter1',
   },
   gliksHome: {
     title: 'ZaaaAAAaaaAAAaap!',
-    story:`"jUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells.
+    story:`"JUST WHAT DO YOU THINK YOU ARE DOING IN A RESTRICTED SPACE?" Glik yells.
     <div class="lose"><p>YOU LOSE!!!!!!</P></div>`,
     image: 'gameover-screen.jpg',
     choices: [
@@ -185,7 +185,7 @@ let story = {chapters: 'chapter1',
   },
   mixPotions: {
     title: 'You mix the potions',
-    story:'The Wizard Glik enters the room and...',
+    story:'You add the fly wings. You.... become a fly. You feel insignificant and yet, free. An eagle would have been better. But you take off out of the tower window and begin your journey...',
     choices: [
       {choice: 'Fly to Schmof', result: 'schmof'},
       {choice: 'Fly to Prussia', result: 'prussia'}
