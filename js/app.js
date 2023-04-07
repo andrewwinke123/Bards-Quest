@@ -16,14 +16,15 @@ const bodyEl = document.getElementById('body')
 //control for input box for open of game, leading into the opening plot and the transition to the story
 nameInputEl.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    inputEl.value = ''
-    titleScreenEl.innerHTML = 
-    `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
-    <h3>${story[story.chapters].story}</h3>
-    ${playerInput()}`,
-    addInputListeners()
+      inputEl.value = ''
+      titleScreenEl.innerHTML = 
+      `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
+      <h3>${story[story.chapters].story}</h3>
+      ${playerInput()}`,
+      addInputListeners()
+    }
   }
-})
+)
 
 
 
