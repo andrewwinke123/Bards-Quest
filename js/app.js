@@ -20,7 +20,7 @@ nameInputEl.addEventListener("keydown", function(event) {
     titleScreenEl.innerHTML = 
     `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
     <h3>${story[story.chapters].story}</h3>
-    ${playerInput()}`
+    ${playerInput()}`,
     addInputListeners()
   }
 })

@@ -225,7 +225,7 @@ let story = {chapters: 'chapter1',
     Glik LLC is dissolved as an entity and you are granted restitution which you used to launch your career as a bard at the nicest casino in Prussia.`,
     image: 'lawyer.jpg',
     choices: [
-      {choice: 'Restart Game', result: 'chapter1'}
+      {choice: 'Restart Game', result: 'restartGame'}
     ]
   },
 //-----------------bellow is any path taken after a fly is caught denoted by an F at the end of the result-------------------------------//
@@ -323,6 +323,35 @@ let story = {chapters: 'chapter1',
         {choice: 'Enter Kitchen', result: 'kitchenF'}
     ]
   },
+    restartGame: {
+      title: '',
+      story:`<body id="body">
+      <section class="flex-parent">
+          <div class="flex-child" id="title-screen">
+              <div class="flex-child">
+                  <div class="line-1 anim-typewriter"><h1>                <div class="character">
+                      <img class="character_spritesheet" src="./img/walking-man.jpg"/>
+                  </div> Bard's Quest</h1></div>
+                  <div>
+                  speak friend and re-enter
+                  </div>
+              </div>
+          </div>
+      </section>
+  </body>`,
+      choices: [
+        {choice: 'friend', result: 'wrong'},
+        {choice: 'pedo mellon a minno', result: 'chapter1'}
+    ]
+  },
+  wrong: {
+    title: 'Nothing happens...',
+    story:'Speak freind and enter',
+    choices: [
+      {choice: 'friend', result: 'wrong'},
+      {choice: 'pedo mellon a minno', result: 'chapter1'}
+  ]
+}
 }
   
 
