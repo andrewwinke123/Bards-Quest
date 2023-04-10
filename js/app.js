@@ -1,9 +1,8 @@
-
 let audio = new Audio("../sounds/typing-short.mp3")
 import {story} from "./data.js"
 
 
-/*------------------------ Cached Element References ------------------------*/
+/*------------------------ Cached Elements ----------------------------------*/
 
 
 const inputEl = document.getElementById("start-input")
@@ -41,7 +40,7 @@ function addInputListeners() {
 
 
 
-/*----------------------------render the current chapter of the story----------*/
+/*------------------Render the current chapter of the story------------------*/
 function render() {
   let image = ''
   titleScreenEl.innerHTML = 
