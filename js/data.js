@@ -192,8 +192,8 @@ let story = {chapters: 'chapter1',
   prussia: {
     title: 'You set off for prussia',
     story:`As a fly, it takes you incredibly long to get there, had you found an eagle feather this trip would have taken half of the time.
-    finally you make it though! The big city. You can finally hit the stage and make it big as a bard. <p>BUT THEN</p><p>famous workplace lawyer Celebrimbor taps you on shoulder.
-    <p>You sir are in violation of your workplace contract with The Wizard Glik. We are going to have to let the courts settle this.</p><p>YOU LOSE PROBABLY..</p>`,
+    finally you make it though! The big city. You can finally hit the stage and make it big as a bard. <p>BUT THEN</p>famous workplace lawyer Celebrimbor taps you on shoulder.
+    You sir are in violation of your workplace contract with The Wizard Glik. We are going to have to let the courts settle this.<p>YOU LOSE PROBABLY..</p>`,
     image: 'gameover-screen.jpg',
     choices: [
       {choice: 'Restart Game', result: 'chapter1'}

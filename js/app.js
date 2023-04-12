@@ -1,4 +1,4 @@
-let audio = new Audio("../sounds/typing-short.mp3")
+const audio = new Audio("../sounds/typing-short.mp3")
 import {story} from "./data.js"
 
 
@@ -15,22 +15,22 @@ const bodyEl = document.getElementById('body')
 //control for input box for open of game, leading into the opening plot and the transition to the story
 nameInputEl.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-      inputEl.value = ''
-      titleScreenEl.innerHTML = 
+    inputEl.value = ""
+    titleScreenEl.innerHTML =
       `<h1 class="title anim-typewriter">${story[story.chapters].title}</h1>
       <h3>${story[story.chapters].story}</h3>
-      ${playerInput()}`,
-      addInputListeners()
-    }
+      ${playerInput()}`
+    addInputListeners()
   }
-)
+})
 
 
 
-function addInputListeners() {
-  const inputButtons = document.querySelectorAll('#buttons button')
-  for(let i = 0; i <inputButtons.length; i++) {
-    inputButtons[i].addEventListener('click', handlePlayerInput)
+
+const addInputListeners = function() {
+  const inputButtons = document.querySelectorAll("#buttons button")
+  for (let i = 0; i < inputButtons.length; i++) {
+    inputButtons[i].addEventListener("click", handlePlayerInput)
   }
 }
 
@@ -41,14 +41,14 @@ function addInputListeners() {
 
 
 /*------------------Render the current chapter of the story------------------*/
-function render() {
-  let image = ''
-  titleScreenEl.innerHTML = 
-  `<div class="title anim-typewriter"<h1>${story[story.chapters].title}</h1></div>
-  <h3>${story[story.chapters].story}</h3>
-  ${image}
-  ${playerInput()}`
-  addInputListeners() 
+const render = function() {
+  let image = ""
+  titleScreenEl.innerHTML =
+    `<div class="title anim-typewriter"<h1>${story[story.chapters].title}</h1></div>
+    <h3>${story[story.chapters].story}</h3>
+    ${image}
+    ${playerInput()}`
+  addInputListeners()
   bodyEl.style.backgroundImage = `url(./img/${story[story.chapters].image})`
 }
 
@@ -58,21 +58,21 @@ function render() {
 
 
 
-function playerInput() {
-  let input = ''
+const playerInput = function() {
+  let input = ""
   if (!story[story.chapters].choices) {
-    return ''
+    return ""
   }
-  for(let i = 0; i <  story[story.chapters].choices.length; i++) {
-  input +=
-    `<div class="button" id="buttons" class="button-box">
-    <button data-result = ${story[story.chapters].choices[i].result} 
-    id="button">${story[story.chapters].choices[i].choice}</button>
-    </div>`
+ const choice = story[story.chapters].choices
+  for (let i = 0; i < choice.length; i++) {
+    input +=
+      `<div class="button" id="buttons" class="button-box">
+      <button data-result=${choice[i].result}
+      id="button">${choice[i].choice}</button>
+      </div>`
   }
   audio.play()
   return input
-
 }
 
 
@@ -82,10 +82,10 @@ function playerInput() {
 
 
 
-function handlePlayerInput(event) {
-  const result = event.target.getAttribute('data-result')
+const handlePlayerInput = function(event) {
+  const result = event.target.getAttribute("data-result")
   if (result) {
     story.chapters = result
     render()
-    }
+  }
 }
