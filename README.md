@@ -12,7 +12,13 @@ The game in question --> [Bard's Quest!](https://bards-quest.netlify.app/)
 To play, you will cycle through multiple choice prompts in a looping path that takes you through The Wizard Glik's tower as you try to escape. You will need to pay attention to any clues you may find to make your escape.
 
 ## Technology Used
-I used HTML, CSS, JavaScript, Adobe Illustrator, and Github to make this game.
+HTML
+CSS
+JavaScript
+Adobe Illustrator
+Github
+[css-tricks.com](https://css-tricks.com/snippets/css/typewriter-effect/)
+Google Fonts
 
 ## Attributions
 
