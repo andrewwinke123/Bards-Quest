@@ -72,6 +72,7 @@ const playerInput = function() {
       </div>`
   }
   audio.play()
+  audio.volume = .25
   return input
 }
 
