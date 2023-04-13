@@ -12,13 +12,19 @@ The game in question --> [Bard's Quest!](https://bards-quest.netlify.app/)
 To play, you will cycle through multiple choice prompts in a looping path that takes you through The Wizard Glik's tower as you try to escape. You will need to pay attention to any clues you may find to make your escape.
 
 ## Technology Used
-HTML
-CSS
-JavaScript
-Adobe Illustrator
-Github
-[css-tricks.com](https://css-tricks.com/snippets/css/typewriter-effect/)
-Google Fonts
+- HTML
+
+- CSS
+
+- JavaScript
+
+- Adobe Illustrator
+
+- Github
+
+- Google Fonts
+
+- [css-tricks.com](https://css-tricks.com/snippets/css/typewriter-effect/)
 
 ## Attributions
 
@@ -29,6 +35,8 @@ I would also like to thank [css-tricks.com](https://css-tricks.com/snippets/css/
 I got my typing audio from [this youtube channel](https://www.youtube.com/watch?v=zY4FIuYg9kE).
 
 I got my fonts from Google Fonts and used the font Raleway.
+
+I styled my buttons with the help of [getcssscan.com](https://getcssscan.com/css-buttons-examples).
 
 My pictures were all turned into vector images and edited/mashed together by me, but their source material was found on various websites:
 

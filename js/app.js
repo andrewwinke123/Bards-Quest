@@ -67,7 +67,7 @@ const playerInput = function() {
   for (let i = 0; i < choice.length; i++) {
     input +=
       `<div class="button" id="buttons" class="button-box">
-      <button data-result=${choice[i].result}
+      <button class="button-23" role="button" data-result=${choice[i].result}
       id="button">${choice[i].choice}</button>
       </div>`
   }
